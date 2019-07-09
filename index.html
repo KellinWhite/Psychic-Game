@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Psychic Game</title>
+</head>
+<body>
+
+<h1>The Psychic Game</h1>
+
+<p>Guess the letter I'm thinking of (please only type letters)</p>
+
+<p># Guesses Left:</p>
+<p class="guessLeft"></p>
+
+<p>Wins:</p>
+<p class="wins"></p>
+
+<p>Losses:</p>
+<p class="losses"></p>
+
+<p>Guesses:</p>
+<p class="guessLog"></p>
+
+<script type="text/javascript">
+
+
+    var appguess = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var userguesses = [];
+    var wins = 0;
+    var loss = 0;
+    var guessesleft = 9;
+    var ranIndex = Math.floor(Math.random() * appguess.length);
+    var appChoice = (appguess[ranIndex]);
+    console.log(appChoice);
+
+	updateGLOnPage();
+    updateLOnPage();
+    updateWOnPage();
+
+
+    document.onkeyup = function(event){
+    var userGuess = event.key;
+    document.querySelector('p.guessLog').innerText += userGuess;
+    }
+
+	function updateGLOnPage(){
+		var el = document.querySelector('p.guessLeft');
+		el.innerText = guessesleft;
+    }
+
+    function updateLOnPage(){
+        var l = document.querySelector('p.losses');
+        l.innerText = loss;
+    }
+    function updateWOnPage(){
+        var w = document.querySelector('p.wins');
+        w.innerText = wins;
+    }
+
+	function updateGL(){
+		if (guessesleft == 0){
+			guessesleft=0;
+			updateGLOnPage();
+		}else{
+			guessesleft = guessesleft - 1; //alternatively you can do: i++
+			updateGLOnPage();
+        }
+  
+  
+    }
+    function updateL(){
+        if (guessleft == 0){
+            loss++;
+        updateLOnPage();
+         }
+    }
+
+    if (userguesses == appguess) {
+        document.querySelector('p.wins').innerhtml = wins++;
+    }
+
+    
+    
+	document.onkeypress = updateGL; //updateI will not execute on line 88, and will only execute when the user hits a key
+</script>
+
+</body>
+</html>
